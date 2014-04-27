@@ -1,3 +1,4 @@
+//http://www.html5rocks.com/en/tutorials/frameworks/angular-websockets/
 angular.module('submitRequestApp').factory('socket', function ($rootScope) {
   var socket = io.connect();
   return {

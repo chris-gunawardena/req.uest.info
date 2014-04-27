@@ -44,9 +44,32 @@ var io = require('socket.io').listen(
 );
 app.set( 'io', io);
 io.sockets.on('connection', function (socket) {
-	app.set( 'ip_'+socket.handshake.address.address, socket);
-    socket.emit('message', { message: 'connected to server as '+'ip_'+socket.handshake.address.address });
+  //http://stackoverflow.com/questions/14382725/how-to-get-the-correct-ip-address-of-a-client-into-a-node-socket-io-app-hosted-o
+  var client_ip = socket.handshake.headers['x-forwarded-for'] || socket.handshake.address.address;
+	app.set( 'ip_' + client_ip, socket );
+    socket.emit( 'message', { message: 'connected to server as ' + 'ip_' + client_ip });
 });
 
 // Expose app
 exports = module.exports = app;
+
+
+//http://stackoverflow.com/questions/14382725/how-to-get-the-correct-ip-address-of-a-client-into-a-node-socket-io-app-hosted-o
+function getClientIp(req) {
+  var ipAddress;
+  // Amazon EC2 / Heroku workaround to get real client IP
+  var forwardedIpsStr = req.header('x-forwarded-for'); 
+  if (forwardedIpsStr) {
+    // 'x-forwarded-for' header may return multiple IP addresses in
+    // the format: "client IP, proxy 1 IP, proxy 2 IP" so take the
+    // the first one
+    var forwardedIps = forwardedIpsStr.split(',');
+    ipAddress = forwardedIps[0];
+  }
+  if (!ipAddress) {
+    // Ensure getting client IP address still works in
+    // development environment
+    ipAddress = req.connection.remoteAddress;
+  }
+  return ipAddress;
+};
