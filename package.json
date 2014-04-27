@@ -16,7 +16,8 @@
     "connect-mongo": "mrzepinski/connect-mongo#2135988",
     "passport": "~0.2.0",
     "passport-local": "~0.1.6",
-    "jade": "~1.2.0"
+    "jade": "~1.2.0",
+    "socket.io": "~0.9.16"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
