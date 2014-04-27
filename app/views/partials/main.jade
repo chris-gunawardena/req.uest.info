@@ -1,6 +1,6 @@
-div(ng-include='\'partials/navbar\'')
+//div(ng-include='\'partials/navbar\'')
 
-.jumbotron
+//.jumbotron
   h1
     | 'Allo, 'Allo 
     span(ng-show='currentUser') {{ currentUser.name }}
@@ -13,10 +13,14 @@ div(ng-include='\'partials/navbar\'')
   p
     a.btn.btn-lg.btn-success(ng-href='#') Splendid!
     
-.row.marketing
+//.row.marketing
   div(ng-repeat='thing in awesomeThings')
     h4 {{thing.name}}
     p {{thing.info}}
 
-.footer
+//.footer
   p ♥ from the Yeoman team
+
+table(class=table)
+  tr
+    td hello
