@@ -1,34 +1,7 @@
 /* Space out content a bit */
-body {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-}
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px;
-  padding-bottom: 19px;
-}
-
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+.ng-grid{
+  height: 300px;
 }
 
 /* Customize container */
@@ -41,23 +14,6 @@ body {
   margin: 30px 0;
 }
 
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-}
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-}
-.marketing p + h4 {
-  margin-top: 28px;
-}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
@@ -76,4 +32,68 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+table tr{
+  cursor: pointer;
+}
+
+#json-pretty-print{
+  font-family: 'DejaVu Sans Mono','Courier New',monospace;
+  font-size: 11px;
+  line-height: 17px;
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}
+
+#json-pretty-print img{
+  display: none;
+}
+
+
+/*JSON pretty print*/
+.PropertyName {
+    color: #204a87
+}
+
+.Number {
+    color: #ad7fa8
+}
+
+.String {
+    color: #4e9a06
+}
+
+.boolean {
+    color: #c4a000
+}
+
+.Null {
+    color: #babdb6;
+    font-style: italic
+}
+
+.error {
+    background: url(img/syntax-error.png) repeat-x left bottom;
+    border-radius: 3px;
+    cursor: default;
+    padding: 0;
+    text-shadow: none
+}
+
+.error::after {
+    background: rgba(255,0,0,.4);
+    border-radius: 2px;
+    content: "";
+    display: block;
+    height: 17px;
+    left: 10px;
+    margin-top: -17px;
+    position: absolute;
+    width: 10px
+}
+
+.error:hover::after {
+    background: rgba(255,0,0,.8)
 }

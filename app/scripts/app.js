@@ -4,7 +4,8 @@ angular.module('submitRequestApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'ngTable'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
