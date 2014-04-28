@@ -14,15 +14,18 @@ html.no-js
     meta(name="viewport", content="width=device-width")
     // Place favicon.ico and apple-touch-icon.png in the root directory
 
-    link(href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css", rel="stylesheet")
     
     <!-- build:css(app) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/ng-table/ng-table.css" />
     <!-- endbower -->
     <!-- endbuild -->
+
+    link(href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css", rel="stylesheet")
+
     <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main.css" />
     <!-- endbuild -->
   body(ng-app="submitRequestApp")
     //[if lt IE 7]>
@@ -45,7 +48,7 @@ html.no-js
       s.parentNode.insertBefore(g,s)}(document,'script'));
 
     <!-- build:js(app) scripts/vendor.js -->
-    <script src="bower_components/socket.io-client/dist/socket.io.min.js"></script>
+    <script src="bower_components/socket.io-client/dist/socket.io.js"></script>
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>

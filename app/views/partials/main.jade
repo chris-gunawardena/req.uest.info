@@ -3,31 +3,22 @@
 h1 Submit Requests
 
 
-h5 Recent Requests
+h5 Requests log
 
-table(ng-table="tableParams"  template-pagination="custom/pager"  class="table table-striped table-hover")
+table(ng-table="table_params"  class="table table-striped table-hover")
   tr
     th Time
     th IP address
     th Method
     th URL
     th Query
-  tr(ng-repeat="request in requests" ng-click="row_click(request)")
+    th Body
+  tr(ng-repeat="request in requests" ng-click="set_selected_row(request)")
     td{{request.time}}
     td{{request.ip_address}}
     td{{request.method}}
     td{{request.url}}
     td{{request.query}}
-script(id="custom/pager" type="text/ng-template")
-  ul.pager.ng-cloak
-    li(ng-repeat='page in pages', ng-class='{"disabled": !page.active, "previous": page.type == "prev", "next": page.type == "next"}', ng-show='page.type == "prev" || page.type == "next"', ng-switch='page.type')
-      a(ng-switch-when='prev', ng-click='params.page(page.number)', href='') « Previous
-      a(ng-switch-when='next', ng-click='params.page(page.number)', href='') Next »
-    li
-      .btn-group
-        button.btn.btn-default(type='button', ng-class='{"active":params.count() == 10}', ng-click='params.count(10)') 10
-        button.btn.btn-default(type='button', ng-class='{"active":params.count() == 50}', ng-click='params.count(50)') 50
-        button.btn.btn-default(type='button', ng-class='{"active":params.count() == 100}', ng-click='params.count(100)') 100
+    td{{request.body}}
 
-  //pre {{table_selected_row}}
-  pre(id="json-pretty-print" ng-bind-html="table_selected_row.pretty" ng-hidw="table_selected_row==false")
+pre(id="json-pretty-print" ng-bind-html="selected_row.pretty" ng-show="selected_row")

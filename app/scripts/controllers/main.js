@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module( 'submitRequestApp' )
-  .controller('MainCtrl', function ($scope, $http, socket, ngTableParams) {
+  .controller('MainCtrl', function ($scope, $rootScope, $http, socket, ngTableParams) {
 
     $scope.requests = [];
-    $scope.tableParams = new ngTableParams({
+    $scope.table_params = new ngTableParams({
     	page: 1,            // show first page
-    	count: 3           // count per page
+    	count: 10           // count per page
    	}, 
    	{	total: $scope.requests.length, // length of data
 		getData: function($defer, params) {
@@ -14,9 +14,10 @@ angular.module( 'submitRequestApp' )
 		}
 	});
 
-    $scope.table_selected_row = false;
-    $scope.row_click = function(row_data) {
-    	$scope.table_selected_row = row_data;
+    $scope.selected_row = false;
+    $scope.set_selected_row = function(row_data) {
+    	console.log( row_data );
+    	$scope.selected_row = row_data;
     }
 
 	socket.on('message', function (data) {
