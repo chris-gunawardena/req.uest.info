@@ -5,9 +5,6 @@ angular.module('submitRequestApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
-    }, {
-      'title': 'Settings',
-      'link': '/settings'
     }];
     
     $scope.logout = function() {
