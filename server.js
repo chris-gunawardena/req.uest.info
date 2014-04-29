@@ -3,7 +3,9 @@
 var express = require('express'),
     path = require('path'),
     fs = require('fs'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    colors = require('colors');
+
 
 /**
  * Main application file

@@ -13,11 +13,12 @@
     "compression": "~1.0.1",
     "lodash": "~2.4.1",
     "mongoose": "~3.8.8",
-    "connect-mongo": "mrzepinski/connect-mongo#2135988",
+    "connect-mongo": "0.4.0",
     "passport": "~0.2.0",
     "passport-local": "~0.1.6",
     "jade": "~1.2.0",
-    "socket.io": "~0.9.16"
+    "socket.io": "~0.9.16",
+    "colors": "~0.6.2"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
