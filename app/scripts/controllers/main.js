@@ -4,13 +4,13 @@ angular.module( 'submitRequestApp' )
   .controller('MainCtrl', function ($scope, $rootScope, $http, socket, ngTableParams) {
 
     $scope.requests = [];
-    $scope.table_params = new ngTableParams({
+    $scope.tableParams = new ngTableParams({
     	page: 1,            // show first page
-    	count: 10           // count per page
+    	count: 2           // count per page
    	}, 
    	{	total: $scope.requests.length, // length of data
 		getData: function($defer, params) {
-			$defer.resolve($scope.requests.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+			$defer.resolve(	$scope.requests.slice((params.page() - 1) * params.count(), params.page() * params.count()));
 		}
 	});
 

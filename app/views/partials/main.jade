@@ -1,37 +1,31 @@
 div(ng-include='\'partials/navbar.html\'')
 
 .well.well-lg
-    p Test your application data submissions independent of end points. <br> Simply point your application to <code>http://req.uest.info/submit/</code> and watch the submissions below in real time.
-    <pre style='color:#d1d1d1;background:#000000;border: medium none;>
-    <span style='color:#ff8906; '>&lt;</span><span style='color:#e66170; font-weight:bold; '>form</span> action<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00dddd; '>http</span><span style='color:#b060b0; '>:</span><span style='color:#e66170; font-weight:bold; '>//</span><span style='color:#6070ec; '>req.uest.info/submit/</span><span style='color:#40015a; '></span><span style='color:#00c4c4; '>"</span><span style='color:#ff8906; '>></span>
-    <span style='color:#ff8906; '>&nbsp;&nbsp;&lt;</span><span style='color:#e66170; font-weight:bold; '>input</span> type<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#007d45; '>text</span><span style='color:#00c4c4; '>"</span> name<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00c4c4; '>Email</span><span style='color:#00c4c4; '>"</span> <span style='color:#ff8906; '>/></span> 
-    <span style='color:#ff8906; '>&nbsp;&nbsp;&lt;</span><span style='color:#e66170; font-weight:bold; '>input</span> type<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#007d45; '>submit</span><span style='color:#00c4c4; '>"</span> value<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00c4c4; '>Subscribe</span><span style='color:#00c4c4; '>"</span> <span style='color:#ff8906; '>/></span>
-    <span style='color:#fb8400; '>&lt;/</span><span style='color:#e66170; font-weight:bold; '>form</span><span style='color:#fb8400; '>></span>
-    </pre>
-    a(class="btn btn-success btn-sm" href="/login") Login to persist logs and listen to other ip addresses  »
-
+		p Test your application data submissions independent of end points. <br> Simply point your application to <code>http://req.uest.info/submit/</code> and watch the submissions below in real time.
+		<pre style='color:#d1d1d1;background:#000000;border: medium none;'>
+		<span style='color:#ff8906; '>&lt;</span><span style='color:#e66170; font-weight:bold; '>form</span> action<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00dddd; '>http</span><span style='color:#b060b0; '>:</span><span style='color:#e66170; font-weight:bold; '>//</span><span style='color:#6070ec; '>req.uest.info/submit/</span><span style='color:#40015a; '></span><span style='color:#00c4c4; '>"</span><span style='color:#ff8906; '>></span>
+		<span style='color:#ff8906; '>&nbsp;&nbsp;&lt;</span><span style='color:#e66170; font-weight:bold; '>input</span> type<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#007d45; '>text</span><span style='color:#00c4c4; '>"</span> name<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00c4c4; '>Email</span><span style='color:#00c4c4; '>"</span> <span style='color:#ff8906; '>/></span> 
+		<span style='color:#ff8906; '>&nbsp;&nbsp;&lt;</span><span style='color:#e66170; font-weight:bold; '>input</span> type<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#007d45; '>submit</span><span style='color:#00c4c4; '>"</span> value<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00c4c4; '>Subscribe</span><span style='color:#00c4c4; '>"</span> <span style='color:#ff8906; '>/></span>
+		<span style='color:#fb8400; '>&lt;/</span><span style='color:#e66170; font-weight:bold; '>form</span><span style='color:#fb8400; '>></span>
+		</pre>
+		a.btn.btn-success.btn-sm(ng-hide='currentUser' href='/login') Login to persist logs and listen to other ip addresses  »
 
 
 h3 Requests log 
 small
-    | *Only requests from your current ip address and ip addesses added to your 
-    a(href="/settings") account
-    |  will be displayed.
+		| *Only requests from your current ip address and ip addesses added to your 
+		a(href="/settings") account
+		|  will be displayed.
 
-table(ng-table="table_params"  class="table table-striped table-hover")
-  tr
-    th Time
-    th IP address
-    th Method
-    th URL
-    th Query
-    th Body
-  tr(ng-repeat="request in requests" ng-click="set_selected_row(request)")
-    td {{request.time}}
-    td {{request.ip_address}}
-    td {{request.method}}
-    td {{request.url}}
-    td {{request.query}}
-    td {{request.body}}
+span.btn.btn-success.btn-sm.pull-right(ng-click="requests=[]") Clear log
+
+table.table.table-striped.table-hover(ng-table="tableParams")
+	tr(ng-repeat="request in requests" ng-click="set_selected_row(request)")
+		td(data-title="'Time'") {{request.time}}
+		td(data-title="'IP address'") {{request.ip_address}}
+		td(data-title="'Method'") {{request.method}}
+		td(data-title="'URL'") {{request.url}}
+		td(data-title="'Query'") {{request.query}}
+		td(data-title="'Body'") {{request.body}}
 
 pre(id="json-pretty-print" ng-bind-html="selected_row.pretty" ng-show="selected_row")
