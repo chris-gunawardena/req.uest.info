@@ -21,12 +21,16 @@ angular.module( 'submitRequestApp' )
     }
 
 	socket.on('message', function (data) {
-		console.log(data);
+		//console.log(data);
 		var currentdate = new Date(); 
 		data.time = currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
 		//data.date = currentdate.getDate() + "/" + (currentdate.getMonth()+1)  + "/" + currentdate.getFullYear();
 		data.pretty = jf.Process( angular.toJson(data) );
 		$scope.requests.unshift(data);
+	});
+
+	socket.on('CLIENT_DEBUG_MSG', function (data) {
+		console.log(data);	
 	});
 
 	//json formatter

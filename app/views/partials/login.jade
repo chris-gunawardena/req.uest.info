@@ -3,7 +3,7 @@ div(ng-include='\'partials/navbar.html\'')
 .row
   .col-sm-12
     h1 Login
-    p
+    //p
       | Accounts are reset on server restart from
       code dummydata.js
       | . Default account is
@@ -27,7 +27,7 @@ div(ng-include='\'partials/navbar.html\'')
           | Please enter your email and password.
         p.help-block {{ errors.other }}
 
-      button.btn.btn-lg.btn-primary(type='submit')  Sign in 
+      button.btn.btn.btn-success(type='submit')  Sign in 
       span.clearfix
 
 .row

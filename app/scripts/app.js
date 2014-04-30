@@ -21,6 +21,10 @@ angular.module('submitRequestApp', [
         templateUrl: 'partials/signup',
         controller: 'SignupCtrl'
       })
+      .when('/unknown_ip', {
+        templateUrl: 'partials/unknown_ip',
+        controller: 'UnknownIpCtrl'     
+      })
       .when('/settings', {
         templateUrl: 'partials/settings',
         controller: 'SettingsCtrl',

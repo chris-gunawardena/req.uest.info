@@ -1,0 +1,10 @@
+div(ng-include='\'partials/navbar.html\'')
+
+.row
+	.col-sm-12
+		h1 Error
+
+		.well 
+			| Your IP address {{unknown_ip}} is not associated with any account. Please 
+			a(href="/settings") login 
+			| and add it to your account.

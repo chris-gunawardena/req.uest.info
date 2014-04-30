@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('submitRequestApp')
-  .controller('SettingsCtrl', function ($scope, $rootScope, User, Auth) {
+  .controller('SettingsCtrl', function ($scope, $rootScope, $http, User, Auth) {
     $scope.errors = {};
 
     $scope.changePassword = function(form) {
@@ -19,7 +19,13 @@ angular.module('submitRequestApp')
       }
 		};
 
-    $scope.ip_address = '127.0.0.1';
+    $scope.ip_address = '';
+		$http.jsonp('http://ipinfo.io/?callback=JSON_CALLBACK').success(function(data) {
+			if( $scope.currentUser.ip_addresses.indexOf(data.ip) === -1 )
+				$scope.ip_address = data.ip;
+		});
+
+
     $scope.add_ip = function(ip) {
 			if( $scope.currentUser.ip_addresses.indexOf(ip) === -1 )
 			{	//console.log( 'User.update({ new_ip: ip })' );
