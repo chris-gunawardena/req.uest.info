@@ -1,24 +1,24 @@
 'use strict';
 
 angular.module( 'submitRequestApp' )
-  .controller('MainCtrl', function ($scope, $rootScope, $http, socket, ngTableParams) {
+	.controller('MainCtrl', function ($scope, $rootScope, $http, socket, ngTableParams) {
 
-    $scope.requests = [];
-    $scope.tableParams = new ngTableParams({
-    	page: 1,            // show first page
-    	count: 2           // count per page
-   	}, 
-   	{	total: $scope.requests.length, // length of data
+		$scope.requests = [];
+		$scope.tableParams = new ngTableParams({
+			page: 1,            // show first page
+			count: 2           // count per page
+		},
+		{	total: $scope.requests.length, // length of data
 		getData: function($defer, params) {
 			$defer.resolve(	$scope.requests.slice((params.page() - 1) * params.count(), params.page() * params.count()));
 		}
 	});
 
-    $scope.selected_row = false;
-    $scope.set_selected_row = function(row_data) {
-    	console.log( row_data );
-    	$scope.selected_row = row_data;
-    }
+		$scope.selected_row = false;
+		$scope.set_selected_row = function(row_data) {
+			console.log( row_data );
+			$scope.selected_row = row_data;
+		}
 
 	socket.on('message', function (data) {
 		//console.log(data);
@@ -194,5 +194,5 @@ angular.module( 'submitRequestApp' )
 		}
 	};
 
-  });
+	});
 

@@ -23,7 +23,7 @@ angular.module('submitRequestApp', [
       })
       .when('/unknown_ip', {
         templateUrl: 'partials/unknown_ip',
-        controller: 'UnknownIpCtrl'     
+        controller: 'UnknownIpCtrl'
       })
       .when('/settings', {
         templateUrl: 'partials/settings',
