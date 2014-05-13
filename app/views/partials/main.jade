@@ -1,31 +1,49 @@
 div(ng-include='\'partials/navbar.html\'')
 
 .well.well-lg
-		p Test your application data submissions independent of end points. <br> Simply point your application to <code>http://req.uest.info/submit/</code> and watch the submissions below in real time.
-		<pre style='color:#d1d1d1;background:#000000;border: medium none;'>
-		<span style='color:#ff8906; '>&lt;</span><span style='color:#e66170; font-weight:bold; '>form</span> action<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00dddd; '>http</span><span style='color:#b060b0; '>:</span><span style='color:#e66170; font-weight:bold; '>//</span><span style='color:#6070ec; '>req.uest.info/submit/</span><span style='color:#40015a; '></span><span style='color:#00c4c4; '>"</span><span style='color:#ff8906; '>></span>
-		<span style='color:#ff8906; '>&nbsp;&nbsp;&lt;</span><span style='color:#e66170; font-weight:bold; '>input</span> type<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#007d45; '>text</span><span style='color:#00c4c4; '>"</span> name<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00c4c4; '>Email</span><span style='color:#00c4c4; '>"</span> <span style='color:#ff8906; '>/></span> 
-		<span style='color:#ff8906; '>&nbsp;&nbsp;&lt;</span><span style='color:#e66170; font-weight:bold; '>input</span> type<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#007d45; '>submit</span><span style='color:#00c4c4; '>"</span> value<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00c4c4; '>Subscribe</span><span style='color:#00c4c4; '>"</span> <span style='color:#ff8906; '>/></span>
-		<span style='color:#fb8400; '>&lt;/</span><span style='color:#e66170; font-weight:bold; '>form</span><span style='color:#fb8400; '>></span>
-		</pre>
-		a.btn.btn-success.btn-sm(ng-hide='currentUser' href='/login') Login to persist logs and listen to other ip addresses  »
+	p Test your application data submissions independent of end points. <br> Simply point your application to <code>http://req.uest.info/submit/</code> and watch the submissions below in real time.
+	.row
+		.col-xs-7
+			<pre style='color:#d1d1d1;background:#000000;border: medium none;'>
+			<span style='color:#ff8906; '>&lt;</span><span style='color:#e66170; font-weight:bold; '>form</span> action<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00dddd; '>http</span><span style='color:#b060b0; '>:</span><span style='color:#e66170; font-weight:bold; '>//</span><span style='color:#6070ec; '>req.uest.info/submit/</span><span style='color:#40015a; '></span><span style='color:#00c4c4; '>"</span><span style='color:#ff8906; '>></span>
+			<span style='color:#ff8906; '>&nbsp;&nbsp;&lt;</span><span style='color:#e66170; font-weight:bold; '>input</span> type<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#007d45; '>text</span><span style='color:#00c4c4; '>"</span> name<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00c4c4; '>Email</span><span style='color:#00c4c4; '>"</span> <span style='color:#ff8906; '>/></span> 
+			<span style='color:#ff8906; '>&nbsp;&nbsp;&lt;</span><span style='color:#e66170; font-weight:bold; '>input</span> type<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#007d45; '>submit</span><span style='color:#00c4c4; '>"</span> value<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00c4c4; '>Subscribe</span><span style='color:#00c4c4; '>"</span> <span style='color:#ff8906; '>/></span>
+			<span style='color:#fb8400; '>&lt;/</span><span style='color:#e66170; font-weight:bold; '>form</span><span style='color:#fb8400; '>></span>
+			</pre>
+			a.btn.btn-success.btn-sm(ng-hide='currentUser' href='/login') Login to save logs and view requests from other ip addresses  »
+		.col-xs-5
+			.bs-component
+				.panel.panel-default
+					.panel-heading
+						h3.panel-title Try me
+					.panel-body
+						form(ng-submit="form_submit()")
+							.form-group
+								input.form-control(placeholder="Email" required="true" ng-model="form_values.subscribe_email")
+							button.btn.btn-default.btn-sm.btn-block(type="submit" ng-bind-html="form_values.button_value")
 
 
-h3 Requests log 
-small
-		| *Only requests from your current ip address and ip addesses added to your 
-		a(href="/settings") account
-		|  will be displayed.
+.bs-component
+	.panel.panel-default
+		.panel-heading
+			span.btn.btn-success.btn-sm.pull-right(ng-click="requests=[];selected_row=false") Clear log
+			h4.panel-title Requests log 
+			small
+				| *Only requests from your current ip address and ip addesses added to your 
+				a(href="/settings") account
+				|  will be displayed.
+		.panel-body
+			table.table.table-striped.table-hover(ng-table="tableParams"  show-filter="true" )
+				tr(ng-repeat="request in requests" ng-click="set_selected_row(request)")
+					td(data-title="'Time'") {{request.time}}
+					td(data-title="'IP address'" xfilter="{ 'ip_address': 'text' }") {{request.ip_address}}
+					td(data-title="'Method'" xfilter="{ 'method': 'text' }") {{request.method}}
+					td(data-title="'URL'" xfilter="{ 'url': 'text' }") {{request.url}}
+					td(data-title="'Query'" xfilter="{ 'query': 'text' }") {{request.query}}
+					td(data-title="'Body'" xfilter="{ 'body': 'text' }") {{request.body}}
 
-span.btn.btn-success.btn-sm.pull-right(ng-click="requests=[]") Clear log
+			pre(id="json-pretty-print" ng-bind-html="selected_row.pretty" ng-show="selected_row")
 
-table.table.table-striped.table-hover(ng-table="tableParams")
-	tr(ng-repeat="request in requests" ng-click="set_selected_row(request)")
-		td(data-title="'Time'") {{request.time}}
-		td(data-title="'IP address'") {{request.ip_address}}
-		td(data-title="'Method'") {{request.method}}
-		td(data-title="'URL'") {{request.url}}
-		td(data-title="'Query'") {{request.query}}
-		td(data-title="'Body'") {{request.body}}
 
-pre(id="json-pretty-print" ng-bind-html="selected_row.pretty" ng-show="selected_row")
+	p Made by Chris Gunawardena - <a target="_blank" href="http://chris.gunawardena.id.au">Blog</a> - <a target="_blank" href="http://www.linkedin.com/in/chrisgunawardena">Linkedin</a>
+	p Icons designed by <a href="http://thenounproject.com/term/playing-cards/29726/" target="_blank" rel="nofollow">Roman Kovbasyuk from the Noun Project</a>. </p>

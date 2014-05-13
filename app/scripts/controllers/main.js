@@ -1,24 +1,45 @@
 'use strict';
 
-angular.module( 'submitRequestApp' )
-	.controller('MainCtrl', function ($scope, $rootScope, $http, socket, ngTableParams) {
+angular.module( 'submitRequestApp' ).controller('MainCtrl', function ($scope, $rootScope, $http, socket, ngTableParams, $timeout, $filter) {
 
-		$scope.requests = [];
-		$scope.tableParams = new ngTableParams({
-			page: 1,            // show first page
-			count: 2           // count per page
-		},
-		{	total: $scope.requests.length, // length of data
-		getData: function($defer, params) {
-			$defer.resolve(	$scope.requests.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-		}
+	//demo form submit
+	$scope.form_values = { 'subscribe_email': '', 'button_value': 'Subscribe' };
+	$scope.form_submit = function(){
+		$scope.form_values.button_value = 'Sending request...';
+		$http({
+			method: 'POST',
+			url: '/submit/',
+			data: $scope.form_values,
+			//headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).success(function(data, status, headers, config) {
+			$scope.form_values.button_value = 'Request sent!';
+			$timeout(function(){
+				$scope.form_values.button_value = 'Subscribe';
+			}, 3000);
+		});
+	};
+
+	$scope.requests = [];
+	$scope.tableParams = new ngTableParams({
+		page: 1,            // show first page
+		count: 2,           // count per page
+        filter: {
+            ip_address: ''       // initial filter
+        } 
+	},
+	{	total: $scope.requests.length, // length of data
+		//getData: function($defer, params) {
+		//	var orderedData = params.filter() ? $filter('filter')( $scope.requests, params.filter()) :       $scope.requests; 
+		//	$defer.resolve(	orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+		//}
 	});
 
-		$scope.selected_row = false;
-		$scope.set_selected_row = function(row_data) {
-			console.log( row_data );
-			$scope.selected_row = row_data;
-		}
+
+	$scope.selected_row = false;
+	$scope.set_selected_row = function(row_data) {
+		//console.log( row_data );
+		$scope.selected_row = row_data;
+	};
 
 	socket.on('message', function (data) {
 		//console.log(data);
@@ -27,6 +48,8 @@ angular.module( 'submitRequestApp' )
 		//data.date = currentdate.getDate() + "/" + (currentdate.getMonth()+1)  + "/" + currentdate.getFullYear();
 		data.pretty = jf.Process( angular.toJson(data) );
 		$scope.requests.unshift(data);
+		if( $scope.requests.length > 0 )
+			$scope.set_selected_row($scope.requests[0]);
 	});
 
 	socket.on('CLIENT_DEBUG_MSG', function (data) {

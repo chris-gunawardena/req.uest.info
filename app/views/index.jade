@@ -38,7 +38,10 @@ html.no-js
 
     // Add your site or application content here
     
-    div(class="container" ng-view)
+    div(class="container")
+        .row
+            .col-lg-12(ng-view)
+
 
     // Google Analytics: change UA-XXXXX-X to be your site's ID.
     script.

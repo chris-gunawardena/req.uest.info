@@ -58,6 +58,7 @@ io.sockets.on('connection', function (socket) {
     //remove all refs in app.set
     //do we need to do this coz the socket might be set to nulll anyways? need to test
 
+    //app.set( 'ip_' + client_ip, null );
     //for (var i=0; i<req.user.ip_addresses.length; i++)
     //{  app.set( 'ip_' + req.user.ip_addresses[i], null );
     //} 
