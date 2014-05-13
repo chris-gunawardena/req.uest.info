@@ -19,7 +19,10 @@ angular.module( 'submitRequestApp' ).controller('MainCtrl', function ($scope, $r
 		});
 	};
 
-	$scope.requests = [];
+	//init requests array
+	$rootScope.requests = $rootScope.requests || [];
+	//if()
+
 	$scope.tableParams = new ngTableParams({
 		page: 1,            // show first page
 		count: 2,           // count per page
@@ -27,29 +30,29 @@ angular.module( 'submitRequestApp' ).controller('MainCtrl', function ($scope, $r
             ip_address: ''       // initial filter
         } 
 	},
-	{	total: $scope.requests.length, // length of data
+	{	total: $rootScope.requests.length, // length of data
 		//getData: function($defer, params) {
-		//	var orderedData = params.filter() ? $filter('filter')( $scope.requests, params.filter()) :       $scope.requests; 
+		//	var orderedData = params.filter() ? $filter('filter')( $rootScope.requests, params.filter()) :       $rootScope.requests; 
 		//	$defer.resolve(	orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
 		//}
 	});
 
+	//$rootScope.$watch('currentUser', function() {
+		//if record already doesnt exists?
+		//$rootScope.requests = $rootScope.currentUser.requests;
+	//});
 
-	$scope.selected_row = false;
+	//set the json display
+	$scope.selected_row_pretty = false;
 	$scope.set_selected_row = function(row_data) {
-		//console.log( row_data );
-		$scope.selected_row = row_data;
+		$scope.selected_row_pretty = jf.Process( angular.toJson(row_data) );
 	};
 
-	socket.on('message', function (data) {
-		//console.log(data);
-		var currentdate = new Date(); 
-		data.time = currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
-		//data.date = currentdate.getDate() + "/" + (currentdate.getMonth()+1)  + "/" + currentdate.getFullYear();
-		data.pretty = jf.Process( angular.toJson(data) );
-		$scope.requests.unshift(data);
-		if( $scope.requests.length > 0 )
-			$scope.set_selected_row($scope.requests[0]);
+	//push to request queue
+	socket.on('message', function (request) {
+		$rootScope.requests.unshift(request);
+		if( $rootScope.requests.length > 0 )
+			$scope.set_selected_row($rootScope.requests[0]);
 	});
 
 	socket.on('CLIENT_DEBUG_MSG', function (data) {
@@ -61,8 +64,8 @@ angular.module( 'submitRequestApp' ).controller('MainCtrl', function ($scope, $r
 		config : {
 			TAB : '    ',
 			depth: false,
-			ImgCollapsed : "img/Collapsed.gif",
-			ImgExpanded : "img/Expanded.gif",
+			//ImgCollapsed : "img/Collapsed.gif",
+			//ImgExpanded : "img/Expanded.gif",
 			QuoteKeys : true,
 			IsCollapsible : true,
 			_dateObj : new Date(),

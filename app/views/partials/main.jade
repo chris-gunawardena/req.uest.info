@@ -45,7 +45,7 @@ div(ng-include='\'partials/navbar.html\'')
 					td(data-title="'Query'" xfilter="{ 'query': 'text' }") {{request.query}}
 					td(data-title="'Body'" xfilter="{ 'body': 'text' }") {{request.body}}
 
-			pre(id="json-pretty-print" ng-bind-html="selected_row.pretty" ng-show="selected_row")
+			pre(id="json-pretty-print" ng-bind-html="selected_row_pretty" ng-show="selected_row_pretty")
 
 
 	p Made by Chris Gunawardena - <a target="_blank" href="http://chris.gunawardena.id.au">Blog</a> - <a target="_blank" href="http://www.linkedin.com/in/chrisgunawardena">Linkedin</a>
