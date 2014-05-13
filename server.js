@@ -40,7 +40,6 @@ var io = require('socket.io').listen(
 
 //app.set( 'io', io);
 io.sockets.on('connection', function (socket) {
-	//http://stackoverflow.com/questions/14382725/how-to-get-the-correct-ip-address-of-a-client-into-a-node-socket-io-app-hosted-o
 
 	//index the client socket using ip adress
 	var client_ip = socket.handshake.headers['x-forwarded-for'] || socket.handshake.address.address;

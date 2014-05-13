@@ -30,6 +30,10 @@
   }
 }
 
+span.input-group-addon {
+  background-color: #464545;
+}
+
 table tr{
   cursor: pointer;
 }

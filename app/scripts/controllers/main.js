@@ -3,18 +3,18 @@
 angular.module( 'submitRequestApp' ).controller('MainCtrl', function ($scope, $rootScope, $http, socket, ngTableParams, $timeout, $filter) {
 
 	//demo form submit
-	$scope.form_values = { 'subscribe_email': '', 'button_value': 'Subscribe' };
+	$scope.form_values = { 'Email': 'test@test.com', 'Submit_value': 'Subscribe' };
 	$scope.form_submit = function(){
-		$scope.form_values.button_value = 'Sending request...';
+		$scope.form_values.Submit_value = 'Sending request...';
 		$http({
 			method: 'POST',
 			url: '/submit/',
 			data: $scope.form_values,
 			//headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).success(function(data, status, headers, config) {
-			$scope.form_values.button_value = 'Request sent!';
+			$scope.form_values.Submit_value = 'Request sent!';
 			$timeout(function(){
-				$scope.form_values.button_value = 'Subscribe';
+				$scope.form_values.Submit_value = 'Subscribe';
 			}, 3000);
 		});
 	};

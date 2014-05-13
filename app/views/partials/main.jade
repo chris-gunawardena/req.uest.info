@@ -1,27 +1,30 @@
 div(ng-include='\'partials/navbar.html\'')
 
 .well.well-lg
-	p Test your application data submissions independent of end points. <br> Simply point your application to <code>http://req.uest.info/submit/</code> and watch the submissions below in real time.
+	br
+	p Test your application data submissions independent of end points. Simply point your application to <code>http://req.uest.info/submit/</code> and watch the submissions below in real time.
+	br
 	.row
 		.col-xs-7
 			<pre style='color:#d1d1d1;background:#000000;border: medium none;'>
-			<span style='color:#ff8906; '>&lt;</span><span style='color:#e66170; font-weight:bold; '>form</span> action<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00dddd; '>http</span><span style='color:#b060b0; '>:</span><span style='color:#e66170; font-weight:bold; '>//</span><span style='color:#6070ec; '>req.uest.info/submit/</span><span style='color:#40015a; '></span><span style='color:#00c4c4; '>"</span><span style='color:#ff8906; '>></span>
-			<span style='color:#ff8906; '>&nbsp;&nbsp;&lt;</span><span style='color:#e66170; font-weight:bold; '>input</span> type<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#007d45; '>text</span><span style='color:#00c4c4; '>"</span> name<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00c4c4; '>Email</span><span style='color:#00c4c4; '>"</span> <span style='color:#ff8906; '>/></span> 
-			<span style='color:#ff8906; '>&nbsp;&nbsp;&lt;</span><span style='color:#e66170; font-weight:bold; '>input</span> type<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#007d45; '>submit</span><span style='color:#00c4c4; '>"</span> value<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00c4c4; '>Subscribe</span><span style='color:#00c4c4; '>"</span> <span style='color:#ff8906; '>/></span>
-			<span style='color:#fb8400; '>&lt;/</span><span style='color:#e66170; font-weight:bold; '>form</span><span style='color:#fb8400; '>></span>
+			<span style='color:#ff8906; '>&lt;</span><span style='color:#e66170; font-weight:bold; '>form</span> action<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00dddd; '>http</span><span style='color:#b060b0; '>:</span><span style='color:#e66170; font-weight:bold; '>//</span><span style='color:#6070ec; '>req.uest.info/submit/</span><span style='color:#40015a; '></span><span style='color:#00c4c4; '>"</span><span style='color:#ff8906; '>&gt;</span>
+			<span style='color:#ff8906; '>&nbsp;&nbsp;&lt;</span><span style='color:#e66170; font-weight:bold; '>input</span> type<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#007d45; '>text</span><span style='color:#00c4c4; '>"</span> name<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00c4c4; '>Email</span><span style='color:#00c4c4; '>"</span> <span style='color:#ff8906; '>/&gt;</span> 
+			<span style='color:#ff8906; '>&nbsp;&nbsp;&lt;</span><span style='color:#e66170; font-weight:bold; '>input</span> type<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#007d45; '>submit</span><span style='color:#00c4c4; '>"</span> value<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00c4c4; '>Subscribe</span><span style='color:#00c4c4; '>"</span> <span style='color:#ff8906; '>/&gt;</span>
+			<span style='color:#fb8400; '>&lt;/</span><span style='color:#e66170; font-weight:bold; '>form</span><span style='color:#fb8400; '>&gt;</span>
 			</pre>
-			a.btn.btn-success.btn-sm(ng-hide='currentUser' href='/login') Login to save logs and view requests from other ip addresses  »
+			//a.btn.btn-success.btn-sm(ng-hide='currentUser' href='/login') Login to save logs and view requests from other ip addresses  »
 		.col-xs-5
 			.bs-component
-				.panel.panel-default
-					.panel-heading
-						h3.panel-title Try me
-					.panel-body
-						form(ng-submit="form_submit()")
-							.form-group
-								input.form-control(placeholder="Email" required="true" ng-model="form_values.subscribe_email")
-							button.btn.btn-default.btn-sm.btn-block(type="submit" ng-bind-html="form_values.button_value")
-
+					//.panel.panel-default
+					//.panel-heading
+					//	h3.panel-title Try me
+					//.panel-body
+					form(ng-submit="form_submit()")
+						.form-group
+							.input-group
+								span.input-group-addon Email
+								input.form-control(required="true" ng-model="form_values.Email")
+						button.btn.btn-default.btn-md.btn-block(type="submit" ng-bind-html="form_values.Submit_value")
 
 .bs-component
 	.panel.panel-default
