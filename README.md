@@ -5,4 +5,5 @@ Test your application data submissions independent of end points. Simply point y
 
 Try the web app at http://req.uest.info
 
-![screenshot](https://raw.githubusercontent.com/chris-gunawardena/req.uest.info/master/screenshot.png)(http://req.uest.info)
+
+[![ScreenShot](https://raw.githubusercontent.com/chris-gunawardena/req.uest.info/master/screenshot.png)](http://req.uest.info)
