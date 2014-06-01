@@ -113,5 +113,13 @@ h1.logo {
   background-size: contain;
   padding-left: 50px;
   color: #000;
+     -webkit-filter: invert(100%);
+    filter: invert(100%);
 }
+
+
+.ng-table-counts.btn-group{
+  display: none;
+}
+
 

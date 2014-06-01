@@ -4,27 +4,29 @@ div(ng-include='\'partials/navbar.html\'')
 	br
 	p Test your application data submissions independent of end points. Simply point your application to <code>http://req.uest.info/submit/</code> and watch the submissions below in real time.
 	br
-	.row
-		.col-xs-7
-			<pre style='color:#d1d1d1;background:#000000;border: medium none;'>
-			<span style='color:#ff8906; '>&lt;</span><span style='color:#e66170; font-weight:bold; '>form</span> action<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00dddd; '>http</span><span style='color:#b060b0; '>:</span><span style='color:#e66170; font-weight:bold; '>//</span><span style='color:#6070ec; '>req.uest.info/submit/</span><span style='color:#40015a; '></span><span style='color:#00c4c4; '>"</span><span style='color:#ff8906; '>&gt;</span>
-			<span style='color:#ff8906; '>&nbsp;&nbsp;&lt;</span><span style='color:#e66170; font-weight:bold; '>input</span> type<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#007d45; '>text</span><span style='color:#00c4c4; '>"</span> name<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00c4c4; '>Email</span><span style='color:#00c4c4; '>"</span> <span style='color:#ff8906; '>/&gt;</span> 
-			<span style='color:#ff8906; '>&nbsp;&nbsp;&lt;</span><span style='color:#e66170; font-weight:bold; '>input</span> type<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#007d45; '>submit</span><span style='color:#00c4c4; '>"</span> value<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00c4c4; '>Subscribe</span><span style='color:#00c4c4; '>"</span> <span style='color:#ff8906; '>/&gt;</span>
-			<span style='color:#fb8400; '>&lt;/</span><span style='color:#e66170; font-weight:bold; '>form</span><span style='color:#fb8400; '>&gt;</span>
-			</pre>
-			//a.btn.btn-success.btn-sm(ng-hide='currentUser' href='/login') Login to save logs and view requests from other ip addresses  »
-		.col-xs-5
-			.bs-component
-					//.panel.panel-default
-					//.panel-heading
-					//	h3.panel-title Try me
-					//.panel-body
-					form(ng-submit="form_submit()")
-						.form-group
-							.input-group
-								span.input-group-addon Email
-								input.form-control(required="true" ng-model="form_values.Email")
-						button.btn.btn-default.btn-md.btn-block(type="submit" ng-bind-html="form_values.Submit_value")
+
+	.bs-component(ng-hide='currentUser')
+		.panel.panel-default
+			.panel-heading
+				h3.panel-title Try me
+			.panel-body
+				.row
+					.col-xs-7
+						<pre style='color:#d1d1d1;background:#000000;border: medium none;font-size:font-size: 13px;'>
+						<span style='color:#ff8906; '>&lt;</span><span style='color:#e66170; font-weight:bold; '>form</span> action<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00dddd; '>http</span><span style='color:#b060b0; '>:</span><span style='color:#e66170; font-weight:bold; '>//</span><span style='color:#6070ec; '>req.uest.info/submit/</span><span style='color:#40015a; '></span><span style='color:#00c4c4; '>"</span><span style='color:#ff8906; '>&gt;</span>
+						<span style='color:#ff8906; '>&nbsp;&nbsp;&lt;</span><span style='color:#e66170; font-weight:bold; '>input</span> type<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#007d45; '>text</span><span style='color:#00c4c4; '>"</span> name<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00c4c4; '>Email</span><span style='color:#00c4c4; '>"</span> <span style='color:#ff8906; '>/&gt;</span> 
+						<span style='color:#ff8906; '>&nbsp;&nbsp;&lt;</span><span style='color:#e66170; font-weight:bold; '>input</span> type<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#007d45; '>submit</span><span style='color:#00c4c4; '>"</span> value<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"</span><span style='color:#00c4c4; '>Subscribe</span><span style='color:#00c4c4; '>"</span> <span style='color:#ff8906; '>/&gt;</span>
+						<span style='color:#fb8400; '>&lt;/</span><span style='color:#e66170; font-weight:bold; '>form</span><span style='color:#fb8400; '>&gt;</span>
+						</pre>
+					.col-xs-5
+						form(ng-submit="form_submit()")
+							.form-group
+								.input-group
+									span.input-group-addon Email
+									input.form-control(required="true" ng-model="form_values.Email")
+							button.btn.btn-default.btn-md.btn-block(type="submit" ng-bind-html="form_values.Submit_value")
+
+
 
 .bs-component
 	.panel.panel-default
@@ -46,6 +48,19 @@ div(ng-include='\'partials/navbar.html\'')
 					td(data-title="'Body'" xfilter="{ 'body': 'text' }") {{request.body}}
 
 			pre(id="json-pretty-print" ng-bind-html="selected_row_pretty" ng-show="selected_row_pretty")
+
+.bs-component(ng-hide='currentUser')
+	.panel.panel-warning
+		.panel-heading
+			h3.panel-title Warning!
+		.panel-body
+			p 
+				| Unless logged in, all received requests from ip addresses without an browser client will be publicly visible to everyone. 
+				br
+				| Please login to only view requests from your ip addresses and to stop others from seeing them.
+			a.btn.btn-warning.btn-sm(ng-hide='currentUser' href='/login') Login here to assign ip address to your account  »
+
+
 
 
 	p Made by Chris Gunawardena - <a target="_blank" href="http://chris.gunawardena.id.au">Blog</a> - <a target="_blank" href="http://www.linkedin.com/in/chrisgunawardena">Linkedin</a>
