@@ -54,11 +54,12 @@ div(ng-include='\'partials/navbar.html\'')
 		.panel-heading
 			h3.panel-title Warning!
 		.panel-body
-			p 
-				| Unless logged in, all received requests from ip addresses without an browser client will be publicly visible to everyone. 
-				br
-				| Please login to only view requests from your ip addresses and to stop others from seeing them.
-			a.btn.btn-warning.btn-sm(ng-hide='currentUser' href='/login') Login here to assign ip address to your account  »
+			p
+				| All received requests are publicly visible to everyone. 
+			//	| Unless logged in, all received requests from ip addresses without an browser client will be publicly visible to everyone. 
+			//	br
+			//	| Please login to only view requests from your ip addresses and to stop others from seeing them.
+			//a.btn.btn-warning.btn-sm(ng-hide='currentUser' href='/login') Login here to assign ip address to your account  »
 
 
 

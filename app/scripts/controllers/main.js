@@ -48,11 +48,12 @@ angular.module( 'submitRequestApp' ).controller('MainCtrl', function ($scope, $r
 		$scope.selected_row_pretty = jf.Process( angular.toJson(row_data) );
 	};
 
-	//push to request queue
+	//push data to  queue
 	socket.on('message', function (request) {
-		$rootScope.requests.unshift(request);
-		if( $rootScope.requests.length > 0 )
-			$scope.set_selected_row($rootScope.requests[0]);
+		//Add the request to the top of the received messages
+		$rootScope.requests.unshift( request );
+		//display the latest request
+		$scope.set_selected_row( $rootScope.requests[0] );
 	});
 
 	socket.on('CLIENT_DEBUG_MSG', function (data) {

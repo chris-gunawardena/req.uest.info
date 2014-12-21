@@ -37,22 +37,21 @@ var io = require('socket.io').listen(
 		console.log('Express server listening on %s:%d, in %s mode', config.ip, config.port, app.get('env'));
 	})
 );
+app.set( 'io', io);
 
-//app.set( 'io', io);
 io.sockets.on('connection', function (socket) {
 
 	//index the client socket using ip adress
-	var client_ip = socket.handshake.headers['x-forwarded-for'] || socket.handshake.address.address;
-	app.set( 'ip_' + client_ip, socket );
+	//var client_ip = socket.handshake.headers['x-forwarded-for'] || socket.handshake.address.address;
+	//app.set( 'ip_' + client_ip, socket );
 
 	//debug messages
-	console.log( ('SERVER: Connected to client ip_' + client_ip).yellow );
-	console.log( ('SERVER: Client ' + client_ip + ' listening to requests from ' + client_ip).yellow );
-	socket.emit( 'CLIENT_DEBUG_MSG', { message: 'Connected to server as ' + client_ip + '. Listing to messages from ' + 'ip_' + client_ip });
+	console.log( ('SERVER: Connected to new client').yellow );
+	socket.emit( 'CLIENT_DEBUG_MSG', { message: 'Connected to server.' });
 
 	//disconnect
 	socket.on('disconnect', function () {
-		console.log( ('SERVER: Client ' + client_ip + ' disconnected from server.').yellow );
+		console.log( ('SERVER: Disconnected from server.').yellow );
 		//remove all refs in app.set
 		//do we need to do this coz the socket might be set to nulll anyways? need to test
 
