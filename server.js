@@ -37,6 +37,7 @@ var io = require('socket.io').listen(
 		console.log('Express server listening on %s:%d, in %s mode', config.ip, config.port, app.get('env'));
 	})
 );
+
 app.set( 'io', io);
 
 io.sockets.on('connection', function (socket) {
@@ -52,6 +53,7 @@ io.sockets.on('connection', function (socket) {
 	//disconnect
 	socket.on('disconnect', function () {
 		console.log( ('SERVER: Disconnected from server.').yellow );
+
 		//remove all refs in app.set
 		//do we need to do this coz the socket might be set to nulll anyways? need to test
 
